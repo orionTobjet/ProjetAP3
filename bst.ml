@@ -39,5 +39,23 @@ let rec bst_insert t v =
 ;;
 
 
-l
-  
+let rec bst_min t = 
+  match t with 
+    | Empty -> Empty
+    | Node(r ,Empty,d ) -> r 
+    | Node(r,g,d) -> bst_min g 
+;;
+
+let rec bst_delete t x =
+  match t with 
+    | Empty -> Empty
+    | Node(r,g,d) -> 
+      if x< r then Node(r, bst_delete g x , d)
+      else if  x > r then Node(r, g, bst_delete d x)
+      else 
+        match g,d with 
+          | Empty , _ -> d
+          | _ , Empty -> g 
+          | _, _ -> let m = bst_min d in
+            Node ( m , g , bst_delete d m)
+;;
