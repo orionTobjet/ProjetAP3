@@ -27,4 +27,17 @@ let rec bst_search t  x : bool =
 ;;
 
 
+
+
+let rec bst_insert t v =
+  match t with 
+    | Empty -> Node( v, Empty, Empty) 
+    | Node(r,g,d) -> 
+      if v = r then t
+      else if v<r then Node( r, bst_insert  g v , d)
+      else Node( r,g , bst_insert  d v)
+;;
+
+
+l
   
